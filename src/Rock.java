@@ -7,7 +7,7 @@ public class Rock implements ItemInterface {
 
     @Override
     public InventoryTableRow getInventoryTableRow() {
-        return new InventoryTableRow("Rock", "Rock :D", "5.0", expiry + "");
+        return new InventoryTableRow("Rock", "Rock :D", "5.0", String.valueOf(expiry));
     }
 
     @Override

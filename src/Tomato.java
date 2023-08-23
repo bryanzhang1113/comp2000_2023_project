@@ -7,7 +7,7 @@ public class Tomato implements ItemInterface {
 
     @Override
     public InventoryTableRow getInventoryTableRow() {
-        return new InventoryTableRow("Tomato", "Red and round", "15.0", expiry + "");
+        return new InventoryTableRow("Tomato", "Red and round", "15.0", String.valueOf(expiry));
     }
 
     @Override

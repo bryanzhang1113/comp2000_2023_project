@@ -14,12 +14,6 @@ public class Player {
         shoppingBasket = new Basket();
     }
 
-    /**
-     * Attempts to perform a purchase of the parameter item.
-     * If the player has enough money for the item, their money is reduced,
-     * and the item is purchased. Otherwise, no changes are made.
-     * @param item
-     */
     public void buy(ItemInterface item) {
         if (Double.valueOf(item.getInventoryTableRow().getColumnThree().trim()) > money) {
             return;
@@ -28,12 +22,6 @@ public class Player {
         money -= Double.valueOf(item.getInventoryTableRow().getColumnThree().trim());
     }
 
-    /**
-     * Attempt to sell an item by name. If an item with a matching name is
-     * found, the players money is increased by the value of the item, and
-     * the item is removed and returned.
-     * @param itemName
-     */
     public ItemInterface sell(String itemName) {
         ItemInterface i = removeItem(itemName);
         if (i != null) {
@@ -43,19 +31,10 @@ public class Player {
         return null;
     }
 
-    /**
-     * Adds an item to the held Inventory.
-     * @param item
-     */
     public void addItem(ItemInterface item) {
         inventory.addOne(item);
     }
 
-    /**
-     * Removes and returns an item from the held Inventory that matches
-     * the `itemName` parameter.
-     * @param itemName
-     */
     public ItemInterface removeItem(String itemName) {
         return inventory.removeOne(itemName);
     }
@@ -95,5 +74,4 @@ public class Player {
     public double getMoney() {
         return money;
     }
-    
 }

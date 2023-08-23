@@ -7,7 +7,7 @@ public class Wand implements ItemInterface {
 
     @Override
     public InventoryTableRow getInventoryTableRow() {
-        return new InventoryTableRow("Wand", "A magic wand!", "100.0", expiry + "");
+        return new InventoryTableRow("Wand", "A magic wand!", "100.0", String.valueOf(expiry));
     }
 
     @Override
