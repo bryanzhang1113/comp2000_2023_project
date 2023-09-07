@@ -64,12 +64,13 @@ public class Basket implements BasketInterface {
     public void processTransaction(Player from, Seller to) {
         ArrayList<ItemInterface> transactionItems = new ArrayList<>();
         boolean rollback = false;
+        // Remove/sell items from the `from` parameter
         for (int i = STARTING_INDEX; i < items.size() && !rollback; i++) {
             for (int q = STARTING_INDEX; q < quantities.get(i); q++) {
                 ItemInterface saleItem = from.sell(items.get(i).getInventoryTableRow().getColumnOne());
                 if (saleItem == null) {
                     rollback = true;
-                    break;
+                    break;  // Trigger transaction rollback
                 }
                 transactionItems.add(saleItem);
             }
@@ -77,11 +78,11 @@ public class Basket implements BasketInterface {
 
         if (rollback) {
             for (ItemInterface item : transactionItems) {
-                from.buy(item);
+                from.buy(item);  // Return to `from`
             }
         } else {
             for (ItemInterface item : transactionItems) {
-                to.buy(item);
+                to.buy(item);  // Have `to` buy each of the transaction items;
             }
         }
     }
@@ -90,23 +91,24 @@ public class Basket implements BasketInterface {
     public void processTransaction(Seller from, Player to) {
         ArrayList<ItemInterface> transactionItems = new ArrayList<>();
         boolean rollback = false;
+        // Remove/sell items from the `from` parameter
         for (int i = STARTING_INDEX; i < items.size() && !rollback; i++) {
             for (int q = STARTING_INDEX; q < quantities.get(i); q++) {
                 ItemInterface saleItem = from.sell(items.get(i).getInventoryTableRow().getColumnOne());
                 if (saleItem == null) {
                     rollback = true;
-                    break;
+                    break;  // Trigger transaction rollback
                 }
                 transactionItems.add(saleItem);
             }
         }
         if (rollback) {
             for (ItemInterface item : transactionItems) {
-                from.buy(item);
+                from.buy(item);  // Return to `from`
             }
         } else {
             for (ItemInterface item : transactionItems) {
-                to.buy(item);
+                to.buy(item);  // Have `to` buy each of the transaction items
             }
         }
     }
